@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { server } from "../config"
 
 export default function Home() {
   const [title, setTitle] = useState<string>("")
@@ -6,7 +7,7 @@ export default function Home() {
 
   // function to fetch data from the api
   const fetchData = async () => {
-    const res = await fetch("http://localhost:3000/api/blog")
+    const res = await fetch(server + "/api/blog")
     const data = await res.json()
     setData(data)
     console.log(data)
