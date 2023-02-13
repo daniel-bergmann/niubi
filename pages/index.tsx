@@ -16,7 +16,7 @@ export default function Home() {
   // function to send a post request to the api
   const sendPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const res = await fetch("http://localhost:3000/api/blog", {
+    const res = await fetch(server + "/api/blog", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
