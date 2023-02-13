@@ -1,5 +1,12 @@
-// import type { NextApiRequest, NextApiResponse } from "next"
+import type { NextApiRequest, NextApiResponse } from "next"
 // import clientPromise from "../../lib/mongodb"
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<any>
+) {
+  return res.status(200).json({ message: "Hello World" })
+}
 
 // export default async function handler(
 //   req: NextApiRequest,
