@@ -25,13 +25,15 @@ export default function Login() {
       // setting token to localstorage
       const storage = window.localStorage
       storage.setItem("token", token)
+      // rerouting to the frontpage after successfully logged in
+      router.push("/")
     } else {
       console.log("Login failed")
+      const { message } = await res.json()
+      console.log(message)
     }
     setEmail("")
     setPassword("")
-    // rerouting to the frontpage after successfully logged in
-    router.push("/")
   }
 
   return (
