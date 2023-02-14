@@ -1,21 +1,22 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { server } from "../config"
+import { GlobalContext } from "../pages/_app"
+import Link from "next/link"
 
 export default function Home() {
   const [title, setTitle] = useState<string>("")
   const [data, setData] = useState<any>([])
 
-  const storage = typeof window !== "undefined" && window.localStorage
-  const token = storage && storage.getItem("token")
+  const [loggedin] = useContext(GlobalContext)
 
   // function to fetch data from the api
+  const fetchData = async () => {
+    const res = await fetch(server + "/api/blog")
+    const data = await res.json()
+    setData(data)
+  }
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(server + "/api/blog")
-      const data = await res.json()
-      setData(data)
-      console.log(data)
-    }
+    // fetching data on each render
     fetchData()
   }, [])
 
@@ -29,36 +30,39 @@ export default function Home() {
       },
       body: JSON.stringify({ title }),
     })
-    console.log(res)
+    if (res.status === 200) {
+      console.log("article added")
+      loggedin && fetchData()
+    } else {
+      console.log("could not add article")
+    }
     setTitle("")
   }
 
-  if (token) {
+  if (loggedin) {
     return (
-      <div>
+      <>
+        <h1>Blog</h1>
         <form onSubmit={sendPost}>
           <input
-            type="text"
+            placeholder="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
           <button type="submit">Submit</button>
         </form>
-        {/* {data.map((item: any, i: any) => (
-          <div key={i}>
-            <h1>{item.title}</h1>
-          </div>
-        ))} */}
-      </div>
+        <ul>
+          {data.map((item: any) => (
+            <li key={item._id}>{item.title}</li>
+          ))}
+        </ul>
+      </>
     )
-  } else
+  } else {
     return (
-      <div>
-        {/* {data.map((item: any, i: any) => (
-          <div key={i}>
-            <h1>{item.title}</h1>
-          </div>
-        ))} */}
-      </div>
+      <p>
+        Not logged in? <Link href="/login">Login here</Link>
+      </p>
     )
+  }
 }

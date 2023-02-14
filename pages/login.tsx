@@ -1,16 +1,16 @@
 import React, { useState, useContext } from "react"
 import { useRouter } from "next/router"
-import { UserContext } from "./_app"
+import { GlobalContext } from "./_app"
 
 export default function Login() {
-  const [email, setEmail] = useState<any>("d@n.is")
-  const [password, setPassword] = useState<any>("12345")
+  const [email, setEmail] = useState<any>("")
+  const [password, setPassword] = useState<any>("")
 
-  const [loggedin, setLoggedin] = useContext(UserContext)
+  const [loggedin] = useContext(GlobalContext)
 
   const router = useRouter()
-  // function to post to login api
-  const sendPost = async (e: any) => {
+
+  const loginHandler = async (e: any) => {
     e.preventDefault()
     const res = await fetch("/api/login", {
       method: "POST",
@@ -22,23 +22,22 @@ export default function Login() {
     if (res.status === 200) {
       // get token
       const { token } = await res.json()
-      token && setLoggedin(true)
-      // set token in localstorage
+      // setting token to localstorage
       const storage = window.localStorage
       storage.setItem("token", token)
     } else {
-      setLoggedin(false)
+      console.log("Login failed")
     }
-
     setEmail("")
     setPassword("")
+    // rerouting to the frontpage after successfully logged in
     router.push("/")
   }
 
   return (
     <>
       Login
-      <form onSubmit={sendPost}>
+      <form onSubmit={loginHandler}>
         <input
           placeholder="email"
           value={email}

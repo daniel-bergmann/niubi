@@ -1,5 +1,9 @@
 const mongoose = require("mongoose")
 
+// 
+// // Defining a Schema for our Blog model
+//
+
 const blogSchema = new mongoose.Schema({
   title: {
     type: String,

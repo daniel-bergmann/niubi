@@ -1,15 +1,30 @@
 import type { AppProps } from "next/app"
-import { useState, createContext } from "react"
+import { useState, createContext, useEffect } from "react"
 
-//  usercontext for token
-export const UserContext = createContext({} as any)
+// usercontext is a global state that can be accessed from any component
+export const GlobalContext = createContext({} as any)
 
+// check if window exists and get token from localstorage
+function getToken() {
+  if (typeof window !== "undefined") {
+    const storage = window.localStorage
+    return storage.getItem("token")
+  }
+}
 export default function App({ Component, pageProps }: AppProps) {
+  const [token, setToken] = useState<any>(getToken())
   const [loggedIn, setLoggedIn] = useState<any>(false)
+  useEffect(() => {
+    if (token) {
+      setLoggedIn(true)
+    } else {
+      setLoggedIn(false)
+    }
+  }, [token])
 
   return (
-    <UserContext.Provider value={[loggedIn, setLoggedIn]}>
+    <GlobalContext.Provider value={[loggedIn, setLoggedIn, token, setToken]}>
       <Component {...pageProps} />
-    </UserContext.Provider>
+    </GlobalContext.Provider>
   )
 }

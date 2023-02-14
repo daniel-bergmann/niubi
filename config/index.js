@@ -1,3 +1,7 @@
+// 
+// // This file helps us to swtich between dev and production mode
+//
+
 const dev = process.env.NODE_ENV !== "production"
 
 export const server = dev
