@@ -51,18 +51,21 @@ export default function Home() {
           />
           <button type="submit">Submit</button>
         </form>
-        <ul>
-          {data.map((item: any) => (
-            <li key={item._id}>{item.title}</li>
-          ))}
-        </ul>
+        {data.map((item: any) => (
+          <h3 key={item._id}>{item.title}</h3>
+        ))}
       </>
     )
   } else {
     return (
-      <p>
-        Not logged in? <Link href="/login">Login here</Link>
-      </p>
+      <>
+        {data.map((item: any) => (
+          <h3 key={item._id}>{item.title}</h3>
+        ))}
+        <p>
+          Not logged in? <Link href="/login">Login here</Link>
+        </p>
+      </>
     )
   }
 }
