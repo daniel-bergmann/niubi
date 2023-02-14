@@ -30,7 +30,6 @@ export default function Login() {
     } else {
       console.log("Login failed")
     }
-
   }
 
   return (
@@ -52,7 +51,13 @@ export default function Login() {
           Submit
         </button>
       </form>
-      {loggedin ? <p>Logged in</p> : <p>Not logged in</p>}
+      {loggedin ? (
+        <p>Logged in</p>
+      ) : (
+        <p>
+          Can't log in? <Link href="/">Go back</Link>
+        </p>
+      )}
       {/* Register
       <form action="/api/register" method="post">
         <input placeholder="email" name="email" type="text" />
