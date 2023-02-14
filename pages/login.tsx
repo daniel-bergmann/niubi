@@ -32,8 +32,7 @@ export default function Login() {
       const { message } = await res.json()
       console.log(message)
     }
-    setEmail("")
-    setPassword("")
+
   }
 
   return (
@@ -48,6 +47,7 @@ export default function Login() {
         <input
           placeholder="password"
           value={password}
+          type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" value="login">
