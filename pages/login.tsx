@@ -29,8 +29,6 @@ export default function Login() {
       router.push("/")
     } else {
       console.log("Login failed")
-      const { message } = await res.json()
-      console.log(message)
     }
 
   }
