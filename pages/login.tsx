@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react"
 import { useRouter } from "next/router"
 import { GlobalContext } from "./_app"
+import Link from "next/link"
 
 export default function Login() {
   const [email, setEmail] = useState<any>("")
