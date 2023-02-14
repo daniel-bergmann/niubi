@@ -1,5 +1,5 @@
 import connect from "../../lib/mongodb"
-import User from "../../model/schema"
+import User from "../../models/userSchema"
 import type { NextApiRequest, NextApiResponse } from "next"
 
 connect()

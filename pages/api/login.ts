@@ -1,5 +1,5 @@
 import connect from "../../lib/mongodb"
-import User from "../../model/schema"
+import User from "../../models/userSchema"
 import type { NextApiRequest, NextApiResponse } from "next"
 import jwt from "jsonwebtoken"
 
@@ -25,5 +25,5 @@ export default async function handler(
       .status(400)
       .json({ success: false, message: "Wrong email or password" })
   }
-  res.json(accessToken)
+  res.json({ token: accessToken })
 }

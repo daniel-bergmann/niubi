@@ -1,37 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-// import clientPromise from "../../lib/mongodb"
+import connect from "../../lib/mongodb"
+import Blog from "../../models/blogSchema"
+
+connect()
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  return res.status(200).json({ message: "Hello World" })
+  if (req.method === "POST") {
+    const { title } = req.body
+    const post = await Blog.create({
+      title,
+    })
+    res.json(post)
+  }
+  if (req.method === "GET") {
+    const posts = await Blog.find({})
+    res.json(posts)
+  }
 }
-
-// export default async function handler(
-//   req: NextApiRequest,
-//   res: NextApiResponse<any>
-// ) {
-//   try {
-//     const client = await clientPromise
-//     const db = client.db("blog")
-//     if (req.method === "POST") {
-//       // Process a POST request
-//       const post = req.body
-//       await db.collection("posts").insertOne(post)
-//       await res.status(200).json({ message: "Post added" })
-//     } else if (req.method === "GET") {
-//       // Process a GET request
-//       const blogPosts = await db
-//         .collection("posts")
-//         .find({})
-//         .sort({ metacritic: -1 })
-//         .limit(10)
-//         .toArray()
-//       // Process a GET request
-//       res.status(200).json(blogPosts)
-//     }
-//   } catch (e) {
-//     console.error(e)
-//   }
-// }

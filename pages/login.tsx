@@ -1,9 +1,13 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { useRouter } from "next/router"
+import { UserContext } from "./_app"
 
 export default function Login() {
-  const [email, setEmail] = useState<any>("")
-  const [password, setPassword] = useState<any>("")
+  const [email, setEmail] = useState<any>("d@n.is")
+  const [password, setPassword] = useState<any>("12345")
+
+  const [loggedin, setLoggedin] = useContext(UserContext)
+
   const router = useRouter()
   // function to post to login api
   const sendPost = async (e: any) => {
@@ -15,10 +19,20 @@ export default function Login() {
       },
       body: JSON.stringify({ email, password }),
     })
-    console.log(res)
+    if (res.status === 200) {
+      // get token
+      const { token } = await res.json()
+      token && setLoggedin(true)
+      // set token in localstorage
+      const storage = window.localStorage
+      storage.setItem("token", token)
+    } else {
+      setLoggedin(false)
+    }
+
     setEmail("")
     setPassword("")
-    // router.push("/")
+    router.push("/")
   }
 
   return (
@@ -39,6 +53,7 @@ export default function Login() {
           Submit
         </button>
       </form>
+      {loggedin ? <p>Logged in</p> : <p>Not logged in</p>}
       {/* Register
       <form action="/api/register" method="post">
         <input placeholder="email" name="email" type="text" />
