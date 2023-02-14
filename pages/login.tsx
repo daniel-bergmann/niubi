@@ -56,7 +56,7 @@ export default function Login() {
         <p>Logged in</p>
       ) : (
         <p>
-          Can't log in? <Link href="/">Go back</Link>
+          Having trouble logging in? You should. <Link href="/">Go back.</Link>
         </p>
       )}
       {/* Register
