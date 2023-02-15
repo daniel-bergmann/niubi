@@ -44,7 +44,9 @@ export default function Home() {
   return (
     <div className="grid grid-cols-1 w-full md:grid-cols-2">
       <div className="w-full">
-        <Form title={title} setTitle={setTitle} sendPost={sendPost} />
+        {loggedin && (
+          <Form title={title} setTitle={setTitle} sendPost={sendPost} />
+        )}
         <Articles data={data} />
       </div>
       <Hero />
