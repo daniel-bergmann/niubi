@@ -10,7 +10,7 @@ const Index = ({ children, ...props }: Props) => {
   return (
     <>
       <Header {...props} />
-      {children}
+      <div className="main-content">{children}</div>
       <Footer />
     </>
   )

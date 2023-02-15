@@ -1,7 +1,11 @@
-import React from 'react'
+import React from "react"
 
 export default function Footer() {
   return (
-    <div>Stay Sassy.</div>
+    <footer className="h-5 border-t-2 border-black">
+      <p className="text-xs text-center pt-2">
+        © {new Date().getFullYear()} | niubi
+      </p>
+    </footer>
   )
 }

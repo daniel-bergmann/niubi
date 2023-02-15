@@ -1,7 +1,10 @@
 import { useState, useEffect, useContext } from "react"
 import { server } from "../config"
 import { GlobalContext } from "../pages/_app"
-import Link from "next/link"
+
+import Hero from "../components/Hero"
+import Form from "../components/Form"
+import Articles from "@/components/Articles"
 
 export default function Home() {
   const [title, setTitle] = useState<string>("")
@@ -38,38 +41,13 @@ export default function Home() {
     setTitle("")
   }
 
-  if (loggedin) {
-    return (
-      <>
-        <form onSubmit={sendPost}>
-          <input
-            placeholder="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <button type="submit">Submit</button>
-        </form>
-        {data.map((item: any) => (
-          <>
-            <h3 key={item._id}>{item.title}</h3>
-            <span className="date">{item.timestamps.slice(0, 10)}</span>
-          </>
-        ))}
-      </>
-    )
-  } else {
-    return (
-      <>
-        {data.map((item: any) => (
-          <>
-            <h3 key={item._id}>{item.title}</h3>
-            <span className="date">{item.timestamps.slice(0, 10)}</span>
-          </>
-        ))}
-        <p>
-          Not logged in? <Link href="/login">Login here</Link>
-        </p>
-      </>
-    )
-  }
+  return (
+    <div className="grid grid-cols-1 w-full md:grid-cols-2">
+      <div className="w-full">
+        <Form title={title} setTitle={setTitle} sendPost={sendPost} />
+        <Articles data={data} />
+      </div>
+      <Hero />
+    </div>
+  )
 }

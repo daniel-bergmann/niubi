@@ -1,7 +1,23 @@
-import React from 'react'
+import React from "react"
 
-export default function Articles() {
+interface ArticlesProps {
+  data: {
+    _id: string
+    title: string
+    timestamps: string
+  }[]
+}
+
+export default function Articles({ data }: ArticlesProps) {
   return (
-    <div>Articles</div>
+    <main className="w-full">
+      {" "}
+      {data.map((item: any) => (
+        <article key={item._id}>
+          <h3>{item.title}</h3>
+          <span className="date">{item.timestamps.slice(0, 10)}</span>
+        </article>
+      ))}
+    </main>
   )
 }
