@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app"
 import { useState, createContext, useEffect } from "react"
+import Layout from "../components/Layout"
 
 // usercontext is a global state that can be accessed from any component
 export const GlobalContext = createContext({} as any)
@@ -24,7 +25,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <GlobalContext.Provider value={[loggedIn, setLoggedIn, token, setToken]}>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </GlobalContext.Provider>
   )
 }

@@ -41,7 +41,6 @@ export default function Home() {
   if (loggedin) {
     return (
       <>
-        <h1>niubi</h1>
         <form onSubmit={sendPost}>
           <input
             placeholder="title"
@@ -61,7 +60,6 @@ export default function Home() {
   } else {
     return (
       <>
-        <h1>niubi</h1>
         {data.map((item: any) => (
           <>
             <h3 key={item._id}>{item.title}</h3>
