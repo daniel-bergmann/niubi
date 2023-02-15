@@ -16,7 +16,8 @@ export default async function handler(
     res.json(post)
   }
   if (req.method === "GET") {
-    const posts = await Blog.find({})
+    //- _id: -1 added is to get newest post first first
+    const posts = await Blog.find({}).sort({ _id: -1 })
     res.json(posts)
   }
 }
