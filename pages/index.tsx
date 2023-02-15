@@ -15,8 +15,8 @@ export default function Home() {
     const data = await res.json()
     setData(data)
   }
+
   useEffect(() => {
-    // fetching data on each render
     fetchData()
   }, [])
 
@@ -31,10 +31,9 @@ export default function Home() {
       body: JSON.stringify({ title }),
     })
     if (res.status === 200) {
-      console.log("article added")
       loggedin && fetchData()
     } else {
-      console.log("could not add article")
+      console.log("There was a problem with the request")
     }
     setTitle("")
   }
@@ -42,7 +41,7 @@ export default function Home() {
   if (loggedin) {
     return (
       <>
-        <h1>Blog</h1>
+        <h1>niubi</h1>
         <form onSubmit={sendPost}>
           <input
             placeholder="title"
@@ -52,15 +51,22 @@ export default function Home() {
           <button type="submit">Submit</button>
         </form>
         {data.map((item: any) => (
-          <h3 key={item._id}>{item.title}</h3>
+          <>
+            <h3 key={item._id}>{item.title}</h3>
+            <span className="date">{item.timestamps.slice(0, 10)}</span>
+          </>
         ))}
       </>
     )
   } else {
     return (
       <>
+        <h1>niubi</h1>
         {data.map((item: any) => (
-          <h3 key={item._id}>{item.title}</h3>
+          <>
+            <h3 key={item._id}>{item.title}</h3>
+            <span className="date">{item.timestamps.slice(0, 10)}</span>
+          </>
         ))}
         <p>
           Not logged in? <Link href="/login">Login here</Link>

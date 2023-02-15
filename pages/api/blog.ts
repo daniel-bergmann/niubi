@@ -9,9 +9,10 @@ export default async function handler(
   res: NextApiResponse<any>
 ) {
   if (req.method === "POST") {
-    const { title } = req.body
+    const { title, timestamp } = req.body
     const post = await Blog.create({
       title,
+      timestamp,
     })
     res.json(post)
   }
