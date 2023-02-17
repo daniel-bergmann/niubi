@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import connect from "../../lib/mongodb"
-import Blog from "../../models/blogSchema"
+import connect from "../../../lib/mongodb"
+import Blog from "../../../models/blogSchema"
 
 connect()
 
