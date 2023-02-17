@@ -26,7 +26,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <div className="hidden md:flex  flex-col items-center justify-center w-full border-l-2">
+    <div>
       <Image
         className=""
         src={image}

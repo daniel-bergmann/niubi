@@ -10,8 +10,7 @@ export default function Form({ title, setTitle, sendPost }: FormProps) {
   return (
     <form onSubmit={sendPost}>
       <input
-      className="w-full p-3 border border-gray-300 rounded-md"
-        placeholder="title"
+        placeholder="..."
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />

@@ -1,19 +1,31 @@
-import React from "react"
+import { useContext } from "react"
 import Link from "next/link"
+import { GlobalContext } from "../../pages/_app"
+import { IoLogOutOutline } from "react-icons/io5"
 
 export default function Header() {
+  const [loggedin, setLoggedIn] = useContext(GlobalContext)
+
+  // funtion that removes the token from localstorage and sets the global state to false
+  const logoutHandler = () => {
+    const storage = window.localStorage
+    storage.removeItem("token")
+    setLoggedIn(false)
+  }
+
   return (
-    <div className="flex justify-around font-bold border-b-2 border-black">
+    <div>
       <Link href="/">
-        <h1 className="text-lg border-r-2 border-black p-4">niubi</h1>
+        <h1>niubi</h1>
       </Link>
 
-      <Link
-        className="text-sm border-l-2 border-black p-4 font-light"
-        href="/login"
-      >
-        Login
-      </Link>
+      {loggedin ? (
+        <button onClick={logoutHandler}>
+          <IoLogOutOutline />
+        </button>
+      ) : (
+        <Link href="/login">Login</Link>
+      )}
     </div>
   )
 }

@@ -34,8 +34,8 @@ export default function Login() {
   }
 
   return (
-    <>
-      Login
+    <div>
+      <h3>Login</h3>
       <form onSubmit={loginHandler}>
         <input
           placeholder="email"
@@ -53,7 +53,7 @@ export default function Login() {
         </button>
       </form>
       {loggedin ? (
-        <p>Logged in</p>
+        <p>Currently Logged in</p>
       ) : (
         <p>
           Having trouble logging in? You should. <Link href="/">Go back.</Link>
@@ -67,6 +67,6 @@ export default function Login() {
           Submit
         </button>
       </form> */}
-    </>
+    </div>
   )
 }

@@ -42,8 +42,8 @@ export default function Home() {
   }
 
   return (
-    <div className="grid grid-cols-1 w-full md:grid-cols-2">
-      <div className="w-full p-3">
+    <div>
+      <div>
         {loggedin && (
           <Form title={title} setTitle={setTitle} sendPost={sendPost} />
         )}
