@@ -1,5 +1,6 @@
 import Image from "next/image"
 import React, { useEffect, useState } from "react"
+import styled from "styled-components"
 import One from "../public/images/1.png"
 import Two from "../public/images/2.png"
 import Three from "../public/images/3.png"
@@ -26,7 +27,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <div>
+    <Container>
       <Image
         className=""
         src={image}
@@ -34,6 +35,13 @@ export default function Hero() {
         width={800}
         height={500}
       />
-    </div>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+  }
+`

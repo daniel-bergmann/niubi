@@ -2,6 +2,7 @@ import { useContext } from "react"
 import Link from "next/link"
 import { GlobalContext } from "../../pages/_app"
 import { IoLogOutOutline } from "react-icons/io5"
+import styled from "styled-components"
 
 export default function Header() {
   const [loggedin, setLoggedIn] = useContext(GlobalContext)
@@ -14,18 +15,42 @@ export default function Header() {
   }
 
   return (
-    <div>
-      <Link href="/">
+    <Container>
+      <Link className="link-left" href="/">
         <h1>niubi</h1>
       </Link>
 
       {loggedin ? (
-        <button onClick={logoutHandler}>
+        <span className="link-right" onClick={logoutHandler}>
           <IoLogOutOutline />
-        </button>
+        </span>
       ) : (
-        <Link href="/login">Login</Link>
+        <Link className="link-right" href="/login">
+          Login
+        </Link>
       )}
-    </div>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid black;
+  padding: 1rem;
+  .link-left {
+    border-right: 2px solid black;
+    padding: 0 1rem;
+  }
+  .link-right {
+    svg {
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    padding: 0 1rem;
+    border-left: 2px solid black;
+  }
+  @media (max-width: 760px) {
+  }
+`

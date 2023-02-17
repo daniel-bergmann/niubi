@@ -1,4 +1,5 @@
 import React from "react"
+import styled from "styled-components"
 
 interface ArticlesProps {
   data: {
@@ -10,7 +11,7 @@ interface ArticlesProps {
 
 export default function Articles({ data }: ArticlesProps) {
   return (
-    <main className="w-full">
+    <Container>
       {" "}
       {data.map((item: any) => (
         <article key={item._id}>
@@ -18,6 +19,21 @@ export default function Articles({ data }: ArticlesProps) {
           <span>{item.timestamps.slice(0, 10)}</span>
         </article>
       ))}
-    </main>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  margin: 12px;
+  article {
+    margin: 20px 0;
+    h3 {
+      font-size: 1.2rem;
+      max-width: 800px;
+    }
+    span {
+      font-size: 0.9rem;
+      color: #676767;
+    }
+  }
+`

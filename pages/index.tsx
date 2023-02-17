@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react"
 import { server } from "../config"
 import { GlobalContext } from "../pages/_app"
+import styled from "styled-components"
 
 import Hero from "../components/Hero"
 import Form from "../components/Form"
@@ -42,7 +43,7 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <Container>
       <div>
         {loggedin && (
           <Form title={title} setTitle={setTitle} sendPost={sendPost} />
@@ -50,6 +51,8 @@ export default function Home() {
         <Articles data={data} />
       </div>
       <Hero />
-    </div>
+    </Container>
   )
 }
+
+const Container = styled.div``
