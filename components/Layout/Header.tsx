@@ -7,7 +7,7 @@ export default function Header() {
       <Link href="/">
         <h1 className="text-lg border-r-2 border-black p-4">niubi</h1>
       </Link>
-     
+
       <Link
         className="text-sm border-l-2 border-black p-4 font-light"
         href="/login"

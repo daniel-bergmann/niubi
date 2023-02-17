@@ -13,9 +13,11 @@ export default function Articles({ data }: ArticlesProps) {
     <main className="w-full">
       {" "}
       {data.map((item: any) => (
-        <article key={item._id}>
-          <h3>{item.title}</h3>
-          <span className="date">{item.timestamps.slice(0, 10)}</span>
+        <article key={item._id} className="p-3">
+          <h3 className="text-lg">{item.title}</h3>
+          <span className="date text-gray-500">
+            {item.timestamps.slice(0, 10)}
+          </span>
         </article>
       ))}
     </main>
