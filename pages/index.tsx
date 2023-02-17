@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react"
+import styled from "styled-components"
 import { server } from "../config"
 import { GlobalContext } from "../pages/_app"
-import styled from "styled-components"
 
 import Hero from "../components/Hero"
 import Form from "../components/Form"
@@ -13,7 +13,6 @@ export default function Home() {
 
   const [loggedin] = useContext(GlobalContext)
 
-  // function to fetch data from the api
   const fetchData = async () => {
     const res = await fetch(server + "/api/blog")
     const data = await res.json()
@@ -55,4 +54,11 @@ export default function Home() {
   )
 }
 
-const Container = styled.div``
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100%;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+}
+`

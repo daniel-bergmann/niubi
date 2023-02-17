@@ -1,5 +1,4 @@
-import React from "react"
-
+import styled from "styled-components"
 interface FormProps {
   title: string
   setTitle: React.Dispatch<React.SetStateAction<string>>
@@ -8,13 +7,18 @@ interface FormProps {
 
 export default function Form({ title, setTitle, sendPost }: FormProps) {
   return (
-    <form onSubmit={sendPost}>
+    <Container onSubmit={sendPost}>
       <input
         placeholder="..."
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      {/* <button type="submit">Submit</button> */}
-    </form>
+      <button type="submit">Submit</button>
+    </Container>
   )
 }
+
+const Container = styled.form`
+  margin: 10px;
+ 
+`

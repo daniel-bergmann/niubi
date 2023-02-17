@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react"
 import { useRouter } from "next/router"
 import { GlobalContext } from "./_app"
+import styled from "styled-components"
 import Link from "next/link"
 
 export default function Login() {
@@ -34,20 +35,22 @@ export default function Login() {
   }
 
   return (
-    <div>
+    <Container>
       <h3>Login</h3>
       <form onSubmit={loginHandler}>
-        <input
-          placeholder="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          placeholder="password"
-          value={password}
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div>
+          <input
+            placeholder="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            placeholder="password"
+            value={password}
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
         <button type="submit" value="login">
           Submit
         </button>
@@ -67,6 +70,20 @@ export default function Login() {
           Submit
         </button>
       </form> */}
-    </div>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  margin: 10px auto;
+  max-width: 300px;
+  form {
+    div {
+      display: flex;
+      flex-direction: column;
+      input {
+        margin: 10px 0;
+      }
+    }
+  }
+`

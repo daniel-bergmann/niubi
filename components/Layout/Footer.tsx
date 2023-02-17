@@ -1,9 +1,16 @@
-import React from "react"
-
+import styled from "styled-components"
 export default function Footer() {
   return (
-    <footer>
+    <Container>
       <p>© {new Date().getFullYear()} | niubi</p>
-    </footer>
+    </Container>
   )
 }
+
+const Container = styled.footer`
+  min-height: 100px;
+  border-top: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+` 

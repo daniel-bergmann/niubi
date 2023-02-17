@@ -42,6 +42,13 @@ export default function Hero() {
 const Container = styled.div`
   display: none;
   @media (min-width: 768px) {
-    display: block;
+    display: flex;
+    img {
+      /* cover */
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      border-left: 2px solid black;
+    }
   }
 `

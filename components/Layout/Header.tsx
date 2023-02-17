@@ -38,18 +38,26 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid black;
-  padding: 1rem;
   .link-left {
     border-right: 2px solid black;
     padding: 0 1rem;
+    height: 100%;
+    h1 {
+      height: 100%;
+    }
   }
   .link-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+
+    height: 50px;
+    border-left: 2px solid black;
     svg {
       font-size: 1.5rem;
       cursor: pointer;
     }
-    padding: 0 1rem;
-    border-left: 2px solid black;
   }
   @media (max-width: 760px) {
   }
