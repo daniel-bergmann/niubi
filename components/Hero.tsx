@@ -9,8 +9,10 @@ import Five from "../public/images/5.png"
 import Six from "../public/images/6.png"
 import Seven from "../public/images/7.png"
 import Eight from "../public/images/8.png"
+import Nine from "../public/images/9.png"
+import Ten from "../public/images/10.png"
 
-const images = [One, Two, Three, Four, Five, Six, Seven, Eight]
+const images = [Ten, Two, Three, Four, Five, Six, Seven, Eight, Nine, One]
 
 export default function Hero() {
   const [image, setImage] = React.useState(images[0])
@@ -48,7 +50,7 @@ const Container = styled.div`
       /* cover */
       object-fit: cover;
       width: 100%;
-      height: 100%;
+      height: auto;
       border-left: 2px solid black;
     }
   }
