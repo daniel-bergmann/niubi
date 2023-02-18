@@ -34,6 +34,7 @@ export default function Hero() {
         alt="hero image"
         width={800}
         height={500}
+        priority
       />
     </Container>
   )
