@@ -7,6 +7,7 @@ import { server } from "../../config"
 import { Container } from "../index"
 import Articles from "@/components/Articles"
 import Hero from "../../components/Hero"
+import { deletePost } from "@/service/api"
 
 export default function Post({
   item,
@@ -15,7 +16,7 @@ export default function Post({
     <Container>
       <Hero />
       <div>
-        <Articles item={item} />
+        <Articles deletePost={deletePost} item={item} />
       </div>
     </Container>
   )
