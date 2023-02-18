@@ -37,14 +37,29 @@ export default function Home({ posts }: Props) {
     setTitle("")
   }
 
+  // function to delete a post
+  const deletePost = async (id: string) => {
+    const res = await fetch(server + "/api/blog/" + id, {
+      method: "DELETE",
+    })
+    const rebuild = await fetch(process.env.NEXT_PUBLIC_WEBHOOK as string, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    })
+    console.log(res)
+  }
+
   return (
     <Container>
       <div>
         {loggedin && (
           <Form title={title} setTitle={setTitle} sendPost={sendPost} />
         )}
-        {posts.map((item: any) => (
-          <Articles key={item._id} item={item} />
+        {posts.slice(0, 6).map((item: any) => (
+          <Articles key={item._id} item={item} deletePost={deletePost} />
         ))}
         <Link className="seemore" href="/posts">
           <button>see more posts</button>

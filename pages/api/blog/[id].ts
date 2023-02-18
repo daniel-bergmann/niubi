@@ -12,4 +12,10 @@ export default async function handler(
     const id = await Blog.findById({ _id: req.query.id })
     res.json(id)
   }
+  if (req.method === "DELETE") {
+    const post = await Blog.deleteOne({
+      _id: req.query.id,
+    })
+    res.json(post)
+  }
 }

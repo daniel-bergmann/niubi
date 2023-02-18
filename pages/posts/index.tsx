@@ -13,7 +13,7 @@ export default function Index({ posts }: Props) {
       <Hero />
       <div>
         {posts.map((item: any) => (
-          <Articles key={item._id} item={item} />
+          <Articles deletePost={() => {}} key={item._id} item={item} />
         ))}
       </div>
     </Container>
