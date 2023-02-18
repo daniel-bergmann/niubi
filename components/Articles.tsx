@@ -3,23 +3,22 @@ import styled from "styled-components"
 import Link from "next/link"
 
 interface ArticlesProps {
-  data: {
-    _id: string
+  item: {
     title: string
+    _id: any
     timestamps: string
-  }[]
+  }
 }
 
-export default function Articles({ data }: ArticlesProps) {
+export default function Articles({ item }: ArticlesProps) {
   return (
     <Container>
-      {" "}
-      {data.map((item: any) => (
-        <article key={item._id}>
+      <article>
+        <Link href={`/posts/${item._id}`}>
           <h3>{item.title}</h3>
-          <span>{item.timestamps.slice(0, 10)}</span>
-        </article>
-      ))}
+        </Link>
+        <span>{item.timestamps.slice(0, 10)}</span>
+      </article>
     </Container>
   )
 }

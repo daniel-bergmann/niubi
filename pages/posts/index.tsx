@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import styled from "styled-components"
 import { server } from "../../config"
 import Articles from "@/components/Articles"
 
@@ -17,7 +16,9 @@ export default function Index() {
 
   return (
     <div>
-      <Articles data={data} />
+      {data.map((item: any) => (
+        <Articles key={item._id} item={item} />
+      ))}
     </div>
   )
 }

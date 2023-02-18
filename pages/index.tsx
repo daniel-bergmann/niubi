@@ -47,7 +47,9 @@ export default function Home() {
         {loggedin && (
           <Form title={title} setTitle={setTitle} sendPost={sendPost} />
         )}
-        <Articles data={data} />
+        {data.map((item: any) => (
+          <Articles key={item._id} item={item} />
+        ))}
       </div>
       <Hero />
     </Container>
@@ -60,5 +62,5 @@ const Container = styled.div`
   height: 100%;
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
-}
+  }
 `
