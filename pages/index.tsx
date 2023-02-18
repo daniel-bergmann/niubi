@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react"
+import { useState, useContext } from "react"
 import styled from "styled-components"
 import { server } from "../config"
 import { GlobalContext } from "../pages/_app"
@@ -14,7 +14,6 @@ interface Props {
 
 export default function Home({ posts }: Props) {
   const [title, setTitle] = useState<string>("")
-  const [data, setData] = useState<any>([])
 
   const [loggedin] = useContext(GlobalContext)
 
