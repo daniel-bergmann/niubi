@@ -8,21 +8,15 @@ import Hero from "../components/Hero"
 import Form from "../components/Form"
 import Articles from "@/components/Articles"
 
-export default function Home() {
+interface Props {
+  posts: {}[]
+}
+
+export default function Home({ posts }: Props) {
   const [title, setTitle] = useState<string>("")
   const [data, setData] = useState<any>([])
 
   const [loggedin] = useContext(GlobalContext)
-
-  const fetchData = async () => {
-    const res = await fetch(server + "/api/blog")
-    const data = await res.json()
-    setData(data)
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
 
   // function to send a post request to the api
   const sendPost = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,11 +28,6 @@ export default function Home() {
       },
       body: JSON.stringify({ title }),
     })
-    if (res.status === 200) {
-      loggedin && fetchData()
-    } else {
-      console.log("There was a problem with the request")
-    }
     setTitle("")
   }
 
@@ -48,7 +37,7 @@ export default function Home() {
         {loggedin && (
           <Form title={title} setTitle={setTitle} sendPost={sendPost} />
         )}
-        {data.map((item: any) => (
+        {posts.map((item: any) => (
           <Articles key={item._id} item={item} />
         ))}
         <Link className="seemore" href="/posts">
@@ -58,6 +47,16 @@ export default function Home() {
       <Hero />
     </Container>
   )
+}
+
+export const getStaticProps = async () => {
+  const res = await fetch(server + "/api/blog")
+  const posts = await res.json()
+  return {
+    props: {
+      posts,
+    },
+  }
 }
 
 export const Container = styled.div`
