@@ -27,6 +27,13 @@ export default function Home({ posts }: Props) {
       },
       body: JSON.stringify({ title }),
     })
+    const rebuild = await fetch(process.env.NEXT_PUBLIC_WEBHOOK as string, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    })
     setTitle("")
   }
 
