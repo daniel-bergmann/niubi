@@ -4,12 +4,21 @@ import {
   InferGetStaticPropsType,
 } from "next"
 import { server } from "../../config"
+import { Container } from "../index"
 import Articles from "@/components/Articles"
+import Hero from "../../components/Hero"
 
 export default function Post({
   item,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <Articles item={item} />
+  return (
+    <Container>
+      <Hero />
+      <div>
+        <Articles item={item} />
+      </div>
+    </Container>
+  )
 }
 
 // get static paths

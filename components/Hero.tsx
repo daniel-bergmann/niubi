@@ -1,5 +1,5 @@
-import Image from "next/image"
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import styled from "styled-components"
 import One from "../public/images/1.png"
 import Two from "../public/images/2.png"
@@ -46,11 +46,13 @@ const Container = styled.div`
   display: none;
   @media (min-width: 768px) {
     display: flex;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    height: 100vh;
     img {
       object-fit: cover;
       width: 100%;
       height: auto;
-      border-left: 2px solid black;
     }
   }
 `

@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react"
 import styled from "styled-components"
 import { server } from "../config"
 import { GlobalContext } from "../pages/_app"
+import Link from "next/link"
 
 import Hero from "../components/Hero"
 import Form from "../components/Form"
@@ -50,16 +51,25 @@ export default function Home() {
         {data.map((item: any) => (
           <Articles key={item._id} item={item} />
         ))}
+        <Link className="seemore" href="/posts">
+          <button>see more posts</button>
+        </Link>
       </div>
       <Hero />
     </Container>
   )
 }
 
-const Container = styled.div`
+export const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   height: 100%;
+  div {
+    .seemore {
+      padding: 10px;
+      text-decoration: underline;
+    }
+  }
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
   }

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { server } from "../../config"
+import { Container } from "../index"
 import Articles from "@/components/Articles"
+import Hero from "../../components/Hero"
 
 export default function Index() {
   const [data, setData] = useState<any>([])
@@ -15,10 +17,13 @@ export default function Index() {
   }, [])
 
   return (
-    <div>
-      {data.map((item: any) => (
-        <Articles key={item._id} item={item} />
-      ))}
-    </div>
+    <Container>
+      <Hero />
+      <div>
+        {data.map((item: any) => (
+          <Articles key={item._id} item={item} />
+        ))}
+      </div>
+    </Container>
   )
 }
