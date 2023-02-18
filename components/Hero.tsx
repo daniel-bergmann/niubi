@@ -1,5 +1,5 @@
 import Image from "next/image"
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 import One from "../public/images/1.png"
 import Two from "../public/images/2.png"
@@ -15,8 +15,8 @@ import Ten from "../public/images/10.png"
 const images = [Ten, Two, Three, Four, Five, Six, Seven, Eight, Nine, One]
 
 export default function Hero() {
-  const [image, setImage] = React.useState(randomimage())
-  // choose a random image
+  const [image, setImage] = useState(randomimage())
+
   function randomimage() {
     return images[Math.floor(Math.random() * images.length)]
   }
@@ -24,7 +24,7 @@ export default function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setImage(randomimage())
-    }, 10000)
+    }, 20000)
     return () => clearInterval(interval)
   }, [])
 
@@ -47,7 +47,6 @@ const Container = styled.div`
   @media (min-width: 768px) {
     display: flex;
     img {
-      /* cover */
       object-fit: cover;
       width: 100%;
       height: auto;
