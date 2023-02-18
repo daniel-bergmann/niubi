@@ -15,7 +15,7 @@ import Ten from "../public/images/10.png"
 const images = [Ten, Two, Three, Four, Five, Six, Seven, Eight, Nine, One]
 
 export default function Hero() {
-  const [image, setImage] = React.useState(images[0])
+  const [image, setImage] = React.useState(randomimage())
   // choose a random image
   function randomimage() {
     return images[Math.floor(Math.random() * images.length)]
