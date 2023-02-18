@@ -30,14 +30,7 @@ export default function Hero() {
 
   return (
     <Container>
-      <Image
-        className=""
-        src={image}
-        alt="hero image"
-        width={800}
-        height={500}
-        priority
-      />
+      <Image src={image} alt="hero image" width={800} height={500} priority />
     </Container>
   )
 }

@@ -7,6 +7,7 @@ import Link from "next/link"
 import Hero from "../components/Hero"
 import Form from "../components/Form"
 import Articles from "@/components/Articles"
+import { deletePost, rebuildWebhook } from "@/service/api"
 
 interface Props {
   posts: {}[]
@@ -27,29 +28,8 @@ export default function Home({ posts }: Props) {
       },
       body: JSON.stringify({ title }),
     })
-    const rebuild = await fetch(process.env.NEXT_PUBLIC_WEBHOOK as string, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({}),
-    })
+    rebuildWebhook()
     setTitle("")
-  }
-
-  // function to delete a post
-  const deletePost = async (id: string) => {
-    const res = await fetch(server + "/api/blog/" + id, {
-      method: "DELETE",
-    })
-    const rebuild = await fetch(process.env.NEXT_PUBLIC_WEBHOOK as string, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({}),
-    })
-    console.log(res)
   }
 
   return (

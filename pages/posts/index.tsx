@@ -2,6 +2,7 @@ import { server } from "../../config"
 import { Container } from "../index"
 import Articles from "@/components/Articles"
 import Hero from "../../components/Hero"
+import { deletePost } from "@/service/api"
 
 interface Props {
   posts: {}[]
@@ -13,7 +14,7 @@ export default function Index({ posts }: Props) {
       <Hero />
       <div>
         {posts.map((item: any) => (
-          <Articles deletePost={() => {}} key={item._id} item={item} />
+          <Articles deletePost={deletePost} key={item._id} item={item} />
         ))}
       </div>
     </Container>
